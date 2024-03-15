@@ -1,7 +1,7 @@
 
 import './App.scss'
 import Score from './components/Score.tsx';
-import Game from './components/Game.tsx';
+import Game from './components/Game/Game.tsx';
 
 function App() {
 

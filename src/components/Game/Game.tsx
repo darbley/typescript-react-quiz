@@ -1,6 +1,6 @@
 import './Game.scss';
-import AnswerOption from './AnswerOption.tsx';
-import Result from './Result.tsx';
+import AnswerOption from '../AnswerOption/AnswerOption.tsx';
+import Result from '../Result.tsx';
 
 const question =     {
     "category": "Science: Gadgets",
