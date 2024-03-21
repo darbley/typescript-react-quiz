@@ -1,6 +1,20 @@
 import { Dispatch, ReactElement, createContext, useContext, useReducer, useState } from 'react';
 
-type Status = 'idle' | 'fetching' | 'ready'
+export interface Question {
+    category: string;
+    type: 'multiple' | 'boolean';
+    difficulty: 'easy' | 'medium' | 'hard';
+    question: string;
+    correct_answer: string;
+    incorrect_answers: string[];
+}
+
+export interface QuestionResponse {
+    response_code: number;
+    results: Question[]
+}
+
+type Status = 'idle' | 'fetching' | 'ready' | 'error'
 
 interface QuizContextInterface {
     quizState: QuizState,
