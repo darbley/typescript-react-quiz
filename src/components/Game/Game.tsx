@@ -7,6 +7,15 @@ import { decode } from 'html-entities';
 function Game() {
 
     const { quizState, dispatch } = useQuiz();
+
+    const handleSubmit = () => {
+        dispatch({type: 'setStatus', payload: 'answered'})
+        if(quizState.userAnswer === quizState.question?.correct_answer){
+            dispatch({type: 'setScore', payload: 'correct'})
+        } else {
+            dispatch({type: 'setScore', payload: 'incorrect'})
+        }
+    }
    
     return (
         <>
@@ -23,7 +32,7 @@ function Game() {
                
                 {
                     quizState.userAnswer && quizState.gameStatus !== 'answered' &&
-                    <button onClick={() => dispatch({type: 'setStatus', payload: 'answered'})}>Submit</button>
+                    <button onClick={handleSubmit}>Submit</button>
                 }
 
                 {
