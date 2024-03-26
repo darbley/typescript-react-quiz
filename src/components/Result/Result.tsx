@@ -8,7 +8,7 @@ function Result() {
     return (
         <>  
             {
-                quizState.userAnswer === quizState.question?.correct_answer ? 
+                    quizState.userAnswer === quizState.question?.correct_answer ? 
                     <div className="result correct">&#10003; You answered correctly!</div> 
                 :
                 <>

@@ -12,7 +12,10 @@ function AnswerOption({answer}: {answer : string}) {
                 answer &&
                 <div className="answer-option">
                     <p 
-                        className={answer === quizState.userAnswer ? 'selected' : ''}
+                        className={`
+                            ${answer === quizState.userAnswer ? 'selected' : ''}
+                            ${quizState.gameStatus === 'answered' && answer === quizState.question?.correct_answer ? 'correct' : ''}
+                        `}
                         onClick={() => dispatch({type: 'setUserAnswer', payload: answer})}> 
                        {decode (answer)}
                     </p>
