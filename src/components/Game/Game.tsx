@@ -1,12 +1,12 @@
 import './Game.scss';
 import AnswerOption from '../AnswerOption/AnswerOption.tsx';
 import Result from '../Result/Result.tsx';
-import { useQuiz } from '../../context/QuizContext/QuizContext.tsx';
+import { useQuiz  } from '../../context/QuizContext/QuizContext.tsx';
 import { decode } from 'html-entities';
 
 function Game() {
 
-    const { quizState } = useQuiz();
+    const { quizState, dispatch } = useQuiz();
    
     return (
         <>
@@ -21,13 +21,16 @@ function Game() {
                     })}
                 </div>
                
-               {quizState.userAnswer && 
-                    <button>Submit</button>
-               }
+                {
+                    quizState.userAnswer && quizState.gameStatus !== 'answered' &&
+                    <button onClick={() => dispatch({type: 'setStatus', payload: 'answered'})}>Submit</button>
+                }
+
+                {
+                    quizState.gameStatus === 'answered' &&
+                    <Result />
+                }
                
-                
-                <Result />
-                
             </div>
             
         </>

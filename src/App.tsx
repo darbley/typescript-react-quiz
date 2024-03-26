@@ -49,12 +49,11 @@ function App() {
       {
         quizState.gameStatus === 'fetching' ?
         <FullPageLoader /> : quizState.gameStatus === 'error' ?
-        <p>Error ...</p> : quizState.gameStatus === 'ready' ?
+        <p>Error ...</p> : 
         <>
           <Score />
           <Game /> 
-        </> :
-        ''
+        </>
       }
        
     </>
