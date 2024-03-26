@@ -22,16 +22,17 @@ interface QuizContextInterface {
 }
 
 interface QuizState {
-    gameStatus: Status
+    gameStatus: Status,
+    question: Question | null
 }
 
-type QuizAction = {
-    type: 'setStatus';
-    payload: Status;
-}
+type QuizAction = 
+    { type: 'setStatus'; payload: Status; } |
+    { type: 'setQuestion'; payload: Question}
 
 const initialState:QuizState = {
-    gameStatus: 'idle'
+    gameStatus: 'idle',
+    question: null
 }
 
 const QuizContext = createContext<QuizContextInterface>({
@@ -60,6 +61,8 @@ export const useQuiz = () => {
 
 const QuizReducer = (quizState: QuizState, action: QuizAction):QuizState => {
     switch (action.type) {
+        case "setQuestion":
+          return { ...quizState, question: action.payload  };
         case "setStatus":
           return { ...quizState, gameStatus: action.payload  };
         default:
