@@ -23,16 +23,19 @@ interface QuizContextInterface {
 
 interface QuizState {
     gameStatus: Status,
-    question: Question | null
+    question: Question | null,
+    userAnswer: string | null
 }
 
 type QuizAction = 
     { type: 'setStatus'; payload: Status; } |
-    { type: 'setQuestion'; payload: Question}
+    { type: 'setQuestion'; payload: Question } |
+    { type: 'setUserAnswer'; payload: string }
 
 const initialState:QuizState = {
     gameStatus: 'idle',
-    question: null
+    question: null,
+    userAnswer: null
 }
 
 const QuizContext = createContext<QuizContextInterface>({
@@ -65,6 +68,8 @@ const QuizReducer = (quizState: QuizState, action: QuizAction):QuizState => {
           return { ...quizState, question: action.payload  };
         case "setStatus":
           return { ...quizState, gameStatus: action.payload  };
+        case "setUserAnswer":
+          return { ...quizState, userAnswer: action.payload  };
         default:
           throw new Error("Unknown action");
     }  

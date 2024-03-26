@@ -2,6 +2,7 @@ import './Game.scss';
 import AnswerOption from '../AnswerOption/AnswerOption.tsx';
 import Result from '../Result/Result.tsx';
 import { useQuiz } from '../../context/QuizContext/QuizContext.tsx';
+import { decode } from 'html-entities';
 
 function Game() {
 
@@ -11,7 +12,7 @@ function Game() {
         <>
             <div className="container game-screen">
                 <h2>Question</h2>
-                <h4>{quizState.question?.question}</h4>
+                <h4>{decode (quizState.question?.question)}</h4>
                 <div className="options">
                     {quizState.question?.incorrect_answers?.map((answer) => {
                         return (
@@ -20,7 +21,10 @@ function Game() {
                     })}
                 </div>
                
-                <button>Submit</button>
+               {quizState.userAnswer && 
+                    <button>Submit</button>
+               }
+               
                 
                 <Result />
                 
